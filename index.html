@@ -73,16 +73,31 @@
             display: block;
             opacity: 1; /* Fade-in effect */
         }
+
+        #wrongMessage {
+            margin-top: 20px;
+            font-size: 20px;
+            color: red;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        #wrongMessage.show {
+            display: block;
+            opacity: 1; /* Fade-in effect */
+        }
     </style>
 </head>
 <body>
 
     <h1>Are you a friend of Abhinandan?</h1>
 
-    <button class="button yes-button" id="yesBtn" onclick="disableYes()">Yes</button>
+    <button class="button yes-button" id="yesBtn" onclick="showWrongMessage()">Yes</button>
     <button class="button no-button" id="noBtn" onclick="showMessage()">No</button>
 
     <p id="message">I knew it!</p>
+    <p id="wrongMessage">Wrong answer!</p> <!-- New message for wrong answer -->
 
     <script>
         function disableYes() {
@@ -94,6 +109,13 @@
             // Show the message with fade-in effect when the "No" button is clicked
             const messageElement = document.getElementById("message");
             messageElement.classList.add("show"); // Add the show class
+        }
+
+        function showWrongMessage() {
+            // Show the wrong answer message when the "Yes" button is clicked
+            const wrongMessageElement = document.getElementById("wrongMessage");
+            wrongMessageElement.classList.add("show"); // Add the show class
+            disableYes(); // Disable the Yes button after it's clicked
         }
     </script>
 
