@@ -9,26 +9,31 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background: linear-gradient(to right, #ffafbd, #ffc3a0);
-            background-image: url('https://www.transparenttextures.com/patterns/pw2.png'); /* Texture */
-            background-blend-mode: multiply;
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080'); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            position: relative; /* Allow for the overlay */
+            color: #333;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: #333;
-            animation: fadeIn 1s ease-in;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .overlay {
+            background: rgba(255, 255, 255, 0.8); /* White overlay for contrast */
+            position: absolute; /* Position overlay over the background */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1; /* Ensure the overlay is above the background */
         }
 
         h1 {
             margin-bottom: 30px;
             font-size: 2.5em;
+            z-index: 2; /* Ensure the text is above the overlay */
         }
 
         .button {
@@ -39,6 +44,7 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 2; /* Ensure the buttons are above the overlay */
         }
 
         .yes-button {
@@ -60,36 +66,25 @@
             cursor: not-allowed;
         }
 
-        #message {
+        #message, #wrongMessage {
             margin-top: 20px;
             font-size: 20px;
             color: red;
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease-in;
+            z-index: 2; /* Ensure messages are above the overlay */
         }
 
-        #message.show {
-            display: block;
-            opacity: 1; /* Fade-in effect */
-        }
-
-        #wrongMessage {
-            margin-top: 20px;
-            font-size: 20px;
-            color: red;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in;
-        }
-
-        #wrongMessage.show {
+        #message.show, #wrongMessage.show {
             display: block;
             opacity: 1; /* Fade-in effect */
         }
     </style>
 </head>
 <body>
+
+    <div class="overlay"></div> <!-- Overlay for better text contrast -->
 
     <h1>Are you a friend of Abhinandan?</h1>
 
